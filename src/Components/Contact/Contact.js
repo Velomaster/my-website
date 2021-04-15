@@ -4,7 +4,7 @@ import TelegramIcon from '@material-ui/icons/Telegram';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
-
+import ContactForm from '../ContactForm/ContactForm';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -22,18 +22,24 @@ const useStyles = makeStyles(() => ({
         color: "#2F4858",
         textAlign: "center",
         textDecoration: "none",
-        
+    },
+    iconsTitle: {
+        marginBottom: "4rem", 
+        marginTop: "3rem",
+        fontSize: "30px", 
+        fontWeight: "200",
     }
 }));
 
-const ContactForm = () => {
+const Contact = () => {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <h1 className={classes.title}>Contact Me</h1>
-            <Grid container spacing={2} justify="center" alignItems="center">
+            <h1 className={classes.title}>Contact</h1>
+            <Grid container spacing={2} justify="center" alignItems="flex-start" >
                 <Grid item xs={4} className={classes.icons}>
+                        <h3 className={classes.iconsTitle}>Let's keep in touch:</h3>
                         <Link
                             href="mailto: gudkov.alex11@gmail.com" >
                                 <AlternateEmailIcon fontSize="large" style={{color: "#2F4858", cursor: "pointer"}}/>
@@ -57,12 +63,12 @@ const ContactForm = () => {
                             <GitHubIcon fontSize="large" style={{marginLeft: "35px", color: "#2F4858", cursor: "pointer"}}/>
                         </Link>
                 </Grid>
-                <Grid item xs={8} style={{backgroundColor: "green"}}>
-                <div>content</div>
+                <Grid item xs={8}>
+                    <ContactForm />
                 </Grid>
             </Grid>
         </div>
     )
 };
 
-export default ContactForm;
+export default Contact;

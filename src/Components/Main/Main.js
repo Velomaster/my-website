@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Main = () => {
-    const classes = useStyles()
+    const classes = useStyles();
     return (
         <div className={classes.body}>
 
