@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     icons: {
         color: "#f1faee",
         justifyContent: "flex-end",
-        paddingTop: "15px"
+        paddingTop: "15px",
     },
     image: {
         height: "500px",
@@ -68,11 +68,12 @@ const Project = (props) => {
                 </Grid>
                 <Grid item xs={6} >
                     <CardActions className={classes.icons}>
-                        <OpenWithRoundedIcon fontSize="large" onClick={() => setScreenshotOpen(!screenshotOpen)} />
+                        <OpenWithRoundedIcon fontSize="large" style={{cursor: "pointer"}} onClick={() => setScreenshotOpen(!screenshotOpen)} />
                         <ModalElement open={screenshotOpen} close={() => closeModal()}>
                            {screenshot}
                         </ModalElement>
                        <Link
+                       
                         href={props.link}
                         rel="noopener noreferrer" 
                         target="_blank" >

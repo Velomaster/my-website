@@ -13,7 +13,6 @@ const useStyles = makeStyles(() => ({
     },
     iconsList: {
         paddingTop: "5rem",
-        paddingBottm: "5rem",
         contentAlign: "center",
     },
     icons: {
@@ -23,7 +22,8 @@ const useStyles = makeStyles(() => ({
     },
     skills: {
         paddingTop: "2rem",
-        paddingLeft: "200px",  
+        paddingLeft: "200px", 
+ 
 
     },
     skill: {
@@ -80,13 +80,13 @@ const Skills = () => {
     const skills = [
         "JavaScript", "HTML", "CSS", "ReactJS", "Redux", "Parcel JS", "Bootstrap", "jQuery", "MongoDB", "Firebase", "NodeJS", "Express", "GitHub", "REST", "API", "ES6",
         "OOP", "Google Analytics"]
-        
+
     return (
         <div className={classes.root}>
-                <h1 style={{ color: "#2F4858"}}>Skills</h1>
+                <h1 style={{ color: "#2F4858"}}>My Skills</h1>
             <Grid container  justify="center" alignItems="center" className={classes.skills}>
                 {skills.map((skill, i) => (
-                    <Grid item sm={4} key={i}>
+                    <Grid item xs={4} key={i}>
                         <List >
                             <ListItem>
                                 <ListItemAvatar>
@@ -100,9 +100,9 @@ const Skills = () => {
                 
             </Grid>
 
-            <Grid container justify="center" className={classes.iconsList}>
+            <Grid container justify="center" alignItems="center"  className={classes.iconsList}>
                 {icons.map((item, i) => (
-                     <Grid item key={i} xs={3} sm={2} md={1} lg={1} >
+                     <Grid item key={i} xs={6} sm={6} md={1} >
                         <img src={item.logo} alt={item.alt} className={classes.icons} />
                      </Grid>
                 )) }
