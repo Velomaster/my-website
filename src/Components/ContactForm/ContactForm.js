@@ -19,9 +19,22 @@ const useStyles = makeStyles(() => ({
         paddingLeft: "3rem",
 
     },
-    input: {
+    inputRoot: {
         color: "white",
-        fontSize: "40px"
+        '&::after': {
+            borderBottomColor: "white !important",
+        },
+        '&:hover:not(.Mui-disabled):before': {
+            borderBottomColor: "white !important",
+        }
+    },
+    inputUnderline: {
+        '&::before': {
+            borderBottomColor: "white !important",
+        }
+    },
+    labelRoot: {
+        color: "white !important",
     },
     button: {
         color: "#2F4858",
@@ -30,7 +43,7 @@ const useStyles = makeStyles(() => ({
         width: "150px",
         height: "40px",
         marginBottom: "2rem"
-    }
+    },
 }))
 const ContactForm = () => {
     const classes = useStyles();
@@ -62,7 +75,13 @@ const ContactForm = () => {
                                             fullWidth 
                                             required
                                             label="Your Name" 
-                                            className={classes.input}
+                                            InputLabelProps={{classes: {
+                                                root: classes.labelRoot,
+                                            }}}
+                                            InputProps={{classes: {
+                                                root: classes.inputRoot,
+                                                underline: classes.inputUnderline,
+                                            }}}
                                         />} 
                                 />
                             </Grid>
