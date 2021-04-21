@@ -19,6 +19,23 @@ const useStyles = makeStyles(() => ({
         paddingLeft: "3rem",
 
     },
+    inputRoot: {
+        color: "white",
+        '&::after': {
+            borderBottomColor: "white !important",
+        },
+        '&:hover:not(.Mui-disabled):before': {
+            borderBottomColor: "white !important",
+        }
+    },
+    inputUnderline: {
+        '&::before': {
+            borderBottomColor: "white !important",
+        }
+    },
+    labelRoot: {
+        color: "white !important",
+    },
     button: {
         color: "#2F4858",
         backgroundColor: "#eef4ed",
@@ -27,32 +44,6 @@ const useStyles = makeStyles(() => ({
         height: "40px",
         marginBottom: "2rem"
     },
-    input: {
-        "&$focusedLabel": {
-            color: "cyan",
-            fontWeight: "300"
-        },
-        color: "cyan",
-        "&:after": {
-            borderBottom: `2px solid cyan`,
-            color: "cyan",
-            
-        }
-    },
-    inputField: {
-        color: "#eef4ed",
-        fontSize: "18px",
-        fontWeight: "300"
-    },
-    inputLabel: {
-        "&$focusedLabel": {
-            color: "cyan"
-          },
-        color: "cyan", 
-    },
-    focusedLabel: {
-    }
-    
 }))
 const ContactForm = () => {
     const classes = useStyles();
@@ -85,17 +76,13 @@ const ContactForm = () => {
                                             fullWidth 
                                             required
                                             label="Your Name" 
+                                            InputLabelProps={{classes: {
+                                                root: classes.labelRoot,
+                                            }}}
                                             InputProps={{classes: {
-                                                root: classes.input,
-                                                focused: classes.focusedLabel,
-                                                } 
-                                            }}
-                                            InputLabelProps={{
-                                                classes: {
-                                                    root: classes.inputLabel,
-                                                    focused: classes.inputField
-                                                }
-                                            }}
+                                                root: classes.inputRoot,
+                                                underline: classes.inputUnderline,
+                                            }}}
                                         />} 
                                 />
                             </Grid>
