@@ -19,26 +19,6 @@ const useStyles = makeStyles(() => ({
         paddingLeft: "3rem",
 
     },
-<<<<<<< HEAD
-=======
-    inputRoot: {
-        color: "white",
-        '&::after': {
-            borderBottomColor: "white !important",
-        },
-        '&:hover:not(.Mui-disabled):before': {
-            borderBottomColor: "white !important",
-        }
-    },
-    inputUnderline: {
-        '&::before': {
-            borderBottomColor: "white !important",
-        }
-    },
-    labelRoot: {
-        color: "white !important",
-    },
->>>>>>> ec0b3789b51b69363209932711ab165a42050490
     button: {
         color: "#2F4858",
         backgroundColor: "#eef4ed",
@@ -47,7 +27,6 @@ const useStyles = makeStyles(() => ({
         height: "40px",
         marginBottom: "2rem"
     },
-<<<<<<< HEAD
     input: {
         "&$focusedLabel": {
             color: "cyan",
@@ -74,8 +53,6 @@ const useStyles = makeStyles(() => ({
     focusedLabel: {
     }
     
-=======
->>>>>>> ec0b3789b51b69363209932711ab165a42050490
 }))
 const ContactForm = () => {
     const classes = useStyles();
@@ -108,7 +85,6 @@ const ContactForm = () => {
                                             fullWidth 
                                             required
                                             label="Your Name" 
-<<<<<<< HEAD
                                             InputProps={{classes: {
                                                 root: classes.input,
                                                 focused: classes.focusedLabel,
@@ -120,15 +96,6 @@ const ContactForm = () => {
                                                     focused: classes.inputField
                                                 }
                                             }}
-=======
-                                            InputLabelProps={{classes: {
-                                                root: classes.labelRoot,
-                                            }}}
-                                            InputProps={{classes: {
-                                                root: classes.inputRoot,
-                                                underline: classes.inputUnderline,
-                                            }}}
->>>>>>> ec0b3789b51b69363209932711ab165a42050490
                                         />} 
                                 />
                             </Grid>
