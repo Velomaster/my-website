@@ -19,10 +19,6 @@ const useStyles = makeStyles(() => ({
         paddingLeft: "3rem",
 
     },
-    input: {
-        color: "white",
-        fontSize: "40px"
-    },
     button: {
         color: "#2F4858",
         backgroundColor: "#eef4ed",
@@ -30,7 +26,33 @@ const useStyles = makeStyles(() => ({
         width: "150px",
         height: "40px",
         marginBottom: "2rem"
+    },
+    input: {
+        "&$focusedLabel": {
+            color: "cyan",
+            fontWeight: "300"
+        },
+        color: "cyan",
+        "&:after": {
+            borderBottom: `2px solid cyan`,
+            color: "cyan",
+            
+        }
+    },
+    inputField: {
+        color: "#eef4ed",
+        fontSize: "18px",
+        fontWeight: "300"
+    },
+    inputLabel: {
+        "&$focusedLabel": {
+            color: "cyan"
+          },
+        color: "cyan", 
+    },
+    focusedLabel: {
     }
+    
 }))
 const ContactForm = () => {
     const classes = useStyles();
@@ -56,13 +78,24 @@ const ContactForm = () => {
                                     control={control}
                                     name="name"
                                     defaultValue=""
+                                    className={classes.input}
                                     render={({ field }) => 
                                         <TextField {...field}
                                             id="name" 
                                             fullWidth 
                                             required
                                             label="Your Name" 
-                                            className={classes.input}
+                                            InputProps={{classes: {
+                                                root: classes.input,
+                                                focused: classes.focusedLabel,
+                                                } 
+                                            }}
+                                            InputLabelProps={{
+                                                classes: {
+                                                    root: classes.inputLabel,
+                                                    focused: classes.inputField
+                                                }
+                                            }}
                                         />} 
                                 />
                             </Grid>
@@ -77,6 +110,8 @@ const ContactForm = () => {
                                             fullWidth 
                                             required
                                             label="Email" 
+                                            InputProps={{className: classes.inputField}}
+                                            InputLabelProps={{className: classes.inputField}}
                                             className={classes.input}
                                         />} 
                                 />
@@ -96,6 +131,8 @@ const ContactForm = () => {
                                             rowsMax={4}
                                             label="Project Details" 
                                             style={{marginBottom: "2rem"}}
+                                            InputProps={{className: classes.inputField}}
+                                            InputLabelProps={{className: classes.inputField}}
                                             className={classes.input}
                                         />} 
                                 />
