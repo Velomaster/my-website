@@ -10,11 +10,13 @@ const useStyles = makeStyles(() => ({
     root: {
         backgroundColor: "#eef4ed",
         paddingTop: "2rem",
-        paddingBottom: "2rem",
+        paddingBottom: "4rem",
     },
     title: {
         color: "#2F4858",
         textAlign: "center",
+        paddingBottom: "2rem",
+
     },
     icons: {
         paddingTop: "2rem",
@@ -24,7 +26,7 @@ const useStyles = makeStyles(() => ({
         textDecoration: "none",
     },
     iconsTitle: {
-        marginBottom: "4rem", 
+        marginBottom: "2rem", 
         marginTop: "3rem",
         fontSize: "30px", 
         fontWeight: "200",
@@ -37,8 +39,8 @@ const Contact = () => {
     return (
         <div className={classes.root}>
             <h1 className={classes.title}>Contact</h1>
-            <Grid container spacing={2} justify="center" alignItems="flex-start" >
-                <Grid item xs={4} className={classes.icons}>
+            <Grid container spacing={2}  alignItems="flex-end" >
+                <Grid item xs={12} md={4} className={classes.icons}>
                         <h3 className={classes.iconsTitle}>Let's keep in touch:</h3>
                         <Link
                             href="mailto: gudkov.alex11@gmail.com" >
@@ -63,8 +65,12 @@ const Contact = () => {
                             <GitHubIcon fontSize="large" style={{marginLeft: "35px", color: "#2F4858", cursor: "pointer"}}/>
                         </Link>
                 </Grid>
-                <Grid item xs={8}>
-                    <ContactForm />
+                <Grid item xs={12} md={8}>
+                    <Grid container justify="center">
+                        <Grid item xs={11}>
+                            <ContactForm />
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </div>

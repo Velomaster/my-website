@@ -28,9 +28,14 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "7rem"
     },
     button: {
-        marginLeft: "10px",
         textAlign: "center",
-        backgroundColor: "#F26419"
+        backgroundColor: "#F26419",
+        borderRadius: "35px",
+        width: "160px",
+        height: "45px",
+        fontSize: "18px",
+        fontWeight: "400"
+
     },
     arrow: {
         margin: "8rem auto 0",
@@ -49,8 +54,7 @@ const Main = () => {
                 <h1 className={classes.title}>I Make Powerful Things</h1>
                 <h3 className={classes.subtitle}> &#123; front-end web developer &#125;</h3>
                 <Box justifyContent="center" display="flex">
-                    <Button variant="outlined" size="medium" color="default">Contact</Button>
-                    <Button variant="contained" size="medium" color="secondary" disableElevation className={classes.button}>Hire Me</Button>
+                    <Button variant="contained" color="secondary" disableElevation className={classes.button}>Hire Me</Button>
                 </Box>
                 <ArrowDropDownCircleOutlinedIcon className={classes.arrow} fontSize="large"/>
 

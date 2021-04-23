@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 import { TextField, Grid, Button, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     root: {
         backgroundColor: "#2F4858",
-        
     },
     subtitle: {
         paddingTop: "2rem",
@@ -15,26 +16,26 @@ const useStyles = makeStyles(() => ({
         fontSize: "28px"
     },
     form: {
-        paddingTop: "1rem",
-        paddingLeft: "3rem",
-
+        paddingTop: "2rem",
     },
     inputRoot: {
-        color: "white",
+        color: "#eef4ed",
+        fontWeight: "300",
+        fontSize: "18px",
         '&::after': {
-            borderBottomColor: "white !important",
+            borderBottomColor: "#eef4ed !important",
         },
         '&:hover:not(.Mui-disabled):before': {
-            borderBottomColor: "white !important",
+            borderBottomColor: "#eef4ed !important",
         }
     },
     inputUnderline: {
         '&::before': {
-            borderBottomColor: "white !important",
+            borderBottomColor: "#eef4ed !important",
         }
     },
     labelRoot: {
-        color: "white !important",
+        color: "#eef4ed !important",
     },
     button: {
         color: "#2F4858",
@@ -48,23 +49,28 @@ const useStyles = makeStyles(() => ({
 const ContactForm = () => {
     const classes = useStyles();
 
-    const { control, handleSubmit } = useForm();
+    const schema = yup.object().shape({
+        name: yup.string().min(2).required().max(60).trim().matches(/^[a-zA-Z]+$/, "enter letters only"),
+        email: yup.string().email().required().trim(),
+        jobDescription: yup.string().min(5, "project details must be at least 5 characters").required()
+    });
 
+    const { control, formState: { errors }, handleSubmit } = useForm({resolver: yupResolver(schema)});
+    
     const onSubmit = (data) => {
-        console.log(JSON.stringify(data));
+        console.log(data)
       };
-
+    
     return (
-        <Grid container className={classes.root}>
+        <Grid container justify="center" className={classes.root}>
             <Grid item xs={12} >
                 <h3 className={classes.subtitle}>Have a project in mind? Send me a message and let's start working</h3>
 
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={11}>
                 <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-
                         <Grid container spacing={2}>
-                            <Grid item sm={12} md={6}>
+                            <Grid item xs={12} md={6}>
                                 <Controller
                                     control={control}
                                     name="name"
@@ -74,8 +80,10 @@ const ContactForm = () => {
                                         <TextField {...field}
                                             id="name" 
                                             fullWidth 
-                                            required
-                                            label="Your Name" 
+                                            // required
+                                            label={errors.name ? "Error" : "Your Name" }
+                                            error={errors.name ? true : null}
+                                            helperText={errors.name?.message}
                                             InputLabelProps={{classes: {
                                                 root: classes.labelRoot,
                                             }}}
@@ -86,7 +94,7 @@ const ContactForm = () => {
                                         />} 
                                 />
                             </Grid>
-                            <Grid item sm={12} md={6}>
+                            <Grid item xs={12} md={6}>
                             <Controller
                                     control={control}
                                     name="email"
@@ -95,37 +103,47 @@ const ContactForm = () => {
                                         <TextField {...field}
                                             id="email" 
                                             fullWidth 
-                                            required
-                                            label="Email" 
-                                            InputProps={{className: classes.inputField}}
-                                            InputLabelProps={{className: classes.inputField}}
-                                            className={classes.input}
+                                            label={errors.email ? "Error" : "Email"} 
+                                            error={errors.email ? true : null}
+                                            helperText={errors.email?.message}
+                                            InputLabelProps={{classes: {
+                                                root: classes.labelRoot,
+                                            }}}
+                                            InputProps={{classes: {
+                                                root: classes.inputRoot,
+                                                underline: classes.inputUnderline,
+                                            }}}
                                         />} 
                                 />
                             </Grid>
                             <Grid item xs={12}>
                             <Controller
                                     control={control}
-                                    name="projectDetails"
+                                    name="jobDescription"
                                     defaultValue=""
                                     render={({ field }) => 
                                         <TextField {...field}
-                                            id="projectDetails" 
+                                            id="jobDescription" 
                                             fullWidth 
-                                            required
                                             multiline
                                             rows={4}
                                             rowsMax={4}
-                                            label="Project Details" 
+                                            label={errors.jobDescription ? "Error" : "Project Details"} 
+                                            error={errors.jobDescription ? true : null}
+                                            helperText={errors.jobDescription?.message}
                                             style={{marginBottom: "2rem"}}
-                                            InputProps={{className: classes.inputField}}
-                                            InputLabelProps={{className: classes.inputField}}
-                                            className={classes.input}
+                                            InputLabelProps={{classes: {
+                                                root: classes.labelRoot,
+                                            }}}
+                                            InputProps={{classes: {
+                                                root: classes.inputRoot,
+                                                underline: classes.inputUnderline,
+                                            }}}
                                         />} 
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <Button disableElevation variant="contained" className={classes.button} type="submit">Submit</Button>
+                                <Button disableElevation variant="contained" className={classes.button} type="submit">Send</Button>
                             </Grid>
                         </Grid>
                 </form>
