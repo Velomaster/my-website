@@ -1,20 +1,25 @@
 import React from 'react';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core';
-import { Link } from "react-router-dom";
+import { Toolbar, AppBar, makeStyles, Button } from '@material-ui/core';
+import { Link } from 'react-scroll'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     header: {
         backgroundColor: "#2F4858",
         paddingTop: "6px",
         paddingBottom: "6px"
     },
     menuButtons: {
-        marginLeft: "2rem",
-        fontWeight: "500",
+        margin: theme.spacing(2),
+        marginBottom: "10px",
+        paddingBottom: "2px",
+        fontWeight: "400",
+        fontSize: "16px",
         color: "#eef4ed",
+        borderRadius: "0px",
+        '&:hover': {
+            borderBottom: "1px solid #F26419",
+            backgroundColor: "transparent"
+        }
     },
     menu: {
         display: "flex",
@@ -25,19 +30,19 @@ const useStyles = makeStyles(() => ({
 const headerMenu = [
     {
         label: "Projects",
-        href: "/projects"
+        href: "projects"
     },
     {
         label: "Skills",
-        href: "/skills"
+        href: "skills"
     },
     {
         label: "About Me",
-        href: "/about-me"
+        href: "about"
     },
     {
         label: "Contact",
-        href: "/contact"
+        href: "contact"
     },
 ];
 
@@ -53,16 +58,18 @@ const Header = () => {
     const getMenuButtons = () => {
         return headerMenu.map(({ label, href }) => {
             return (
-                <Button  
-                    {...{
-                        key: label,
-                        to: href,
-                        component: Link,
-                        className: menuButtons
-                        }
-                    }>
-                    {label}
-                </Button>)
+                <Button className={menuButtons}> 
+                    <Link
+                        {...{
+                            key: label,
+                            to: href,
+                            smooth: true,
+                            }
+                        }>
+                        {label}
+                    </Link>
+                </Button>
+                )
         });
     };
 

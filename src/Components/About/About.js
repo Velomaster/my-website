@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
 const About = () => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
+        <div className={classes.root} id="about">
             <h1 style={{ color: "#eef4ed", paddingBottom: "2rem"}}>About Me</h1>
             <Grid container className={classes.section}>
                 <Grid item className={classes.about}>

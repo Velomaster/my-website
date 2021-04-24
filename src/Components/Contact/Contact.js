@@ -37,7 +37,7 @@ const Contact = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} id="contact">
             <h1 className={classes.title}>Contact</h1>
             <Grid container spacing={2}  alignItems="flex-end" >
                 <Grid item xs={12} md={4} className={classes.icons}>

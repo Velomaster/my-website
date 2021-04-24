@@ -9,7 +9,6 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "#2F4858",
     },
     subtitle: {
-        paddingTop: "2rem",
         paddingLeft: "3rem",
         color: "#F6AE2D", 
         fontWeight: "300",
@@ -32,7 +31,7 @@ const useStyles = makeStyles(() => ({
     inputUnderline: {
         '&::before': {
             borderBottomColor: "#eef4ed !important",
-        }
+        },
     },
     labelRoot: {
         color: "#eef4ed !important",
@@ -55,7 +54,7 @@ const ContactForm = () => {
         jobDescription: yup.string().min(5, "project details must be at least 5 characters").required()
     });
 
-    const { control, formState: { errors }, handleSubmit } = useForm({resolver: yupResolver(schema)});
+    const { control, formState: { errors }, handleSubmit } = useForm({resolver: yupResolver(schema), reValidateMode: "onBlur"});
     
     const onSubmit = (data) => {
         console.log(data)
@@ -80,7 +79,6 @@ const ContactForm = () => {
                                         <TextField {...field}
                                             id="name" 
                                             fullWidth 
-                                            // required
                                             label={errors.name ? "Error" : "Your Name" }
                                             error={errors.name ? true : null}
                                             helperText={errors.name?.message}

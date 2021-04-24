@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     subtitle: {
         color: "#2F4858",
-        fontSize: "18px",
+        fontSize: "20px",
         textAlign: "center",
         marginBottom: "7rem"
     },
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "35px",
         width: "160px",
         height: "45px",
-        fontSize: "18px",
+        fontSize: "16px",
         fontWeight: "400"
 
     },

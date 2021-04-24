@@ -25,7 +25,7 @@ const Portfolio = () => {
 
     const classes = useStyles()
     return (
-        <div className={classes.hero}>
+        <div className={classes.hero} id={'projects'}>
             <h1 className={classes.title}>Projects</h1>
             <Container maxWidth="lg" className={classes.carousel}>
                  <Carousel 

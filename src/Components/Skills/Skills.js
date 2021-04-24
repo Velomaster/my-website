@@ -82,7 +82,7 @@ const Skills = () => {
         "OOP", "Google Analytics"]
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} id="skills">
                 <h1 style={{ color: "#2F4858"}}>My Skills</h1>
             <Grid container  justify="center" alignItems="center" className={classes.skills}>
                 {skills.map((skill, i) => (
