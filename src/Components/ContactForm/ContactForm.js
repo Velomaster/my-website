@@ -54,7 +54,7 @@ const ContactForm = () => {
         jobDescription: yup.string().min(5, "project details must be at least 5 characters").required()
     });
 
-    const { control, formState: { errors }, handleSubmit } = useForm({resolver: yupResolver(schema), reValidateMode: "onBlur"});
+    const { control, formState: { errors }, handleSubmit } = useForm({resolver: yupResolver(schema)});
     
     const onSubmit = (data) => {
         console.log(data)
@@ -79,7 +79,7 @@ const ContactForm = () => {
                                         <TextField {...field}
                                             id="name" 
                                             fullWidth 
-                                            label={errors.name ? "Error" : "Your Name" }
+                                            label="Your Name"
                                             error={errors.name ? true : null}
                                             helperText={errors.name?.message}
                                             InputLabelProps={{classes: {
@@ -101,7 +101,7 @@ const ContactForm = () => {
                                         <TextField {...field}
                                             id="email" 
                                             fullWidth 
-                                            label={errors.email ? "Error" : "Email"} 
+                                            label="Email" 
                                             error={errors.email ? true : null}
                                             helperText={errors.email?.message}
                                             InputLabelProps={{classes: {
@@ -126,7 +126,7 @@ const ContactForm = () => {
                                             multiline
                                             rows={4}
                                             rowsMax={4}
-                                            label={errors.jobDescription ? "Error" : "Project Details"} 
+                                            label="Project Details" 
                                             error={errors.jobDescription ? true : null}
                                             helperText={errors.jobDescription?.message}
                                             style={{marginBottom: "2rem"}}

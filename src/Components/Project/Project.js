@@ -1,42 +1,43 @@
 import {React, useState } from 'react';
-import { Card, CardContent, CardMedia, Grid, makeStyles, CardActions } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
+import {Grid, Link, Box, Fade, makeStyles} from '@material-ui/core';
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
 import OpenWithRoundedIcon from '@material-ui/icons/OpenWithRounded';
 import ModalElement from '../ModalElement/ModalElement';
+import Image from 'material-ui-image';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: "rgba(0, 0, 0, 0.15)",
         marginBottom: "2rem",
-        maxWidth: "1000px",
-        marginLeft: "107px"
     },
     cardContent: {
         color: "#eef4ed",
         fontSize: "20px",
         fontWeight: "300",
+        fontFamily: `'Jost', sans-serif`,
+        paddingLeft: "10px",
+        [theme.breakpoints.down('xs')]: {
+            fontSize: "14px",
+            paddingLeft: "5px",
+        }
     },
     icons: {
         color: "#f1faee",
-        justifyContent: "flex-end",
-        paddingTop: "15px",
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        paddingRight: "10px",
     },
     image: {
-        height: "500px",
-        backgroundSize: 'contain'
-    },
-    screenshot: {
-        height: "400px",
-        backgroundSize: 'contain',
-        textDecoration: "none"
-
+        width: "80%",
+        objectFit: "initial",
     },
     popup: {
-        justifyContent: "center",
-        position: 'absolute',
-        width: 800,
+        width: "80%",
+        objectFit: "initial",
         boxShadow: theme.shadows[5],
+        [theme.breakpoints.down('xs')]: {
+            width: "90%",
+        },
     }
 }));
 
@@ -47,42 +48,42 @@ const Project = (props) => {
         setScreenshotOpen(false);
     };
 
-    const screenshot = <Card className={classes.popup}>
-            <CardMedia
-                className={classes.screenshot}
-                image={props.image}
-                title={props.name}
-                onClick={() => closeModal()} />
-        </Card>
+    const aspectRatio = 2 / 1;
 
+    const screenshot = (
+        <div className={classes.popup}>
+            <Image src={props.image} aspectRatio={aspectRatio} cover onClick={() => closeModal()} />
+        </div>);
+    
     return (
-        <Card className={classes.root} >
-            <Grid container >
-                <Grid item xs={12}>
-                    <CardMedia className={classes.image} image={props.image}/>
-                </Grid>
-                <Grid item xs={6} >
-                    <CardContent className={classes.cardContent} style={{paddingTop: "18px"}}>
-                        <span><b>Project: </b> {props.project}</span>
-                    </CardContent>
-                </Grid>
-                <Grid item xs={6} >
-                    <CardActions className={classes.icons}>
+        <div className={classes.root}>
+            <Grid container justify="center" alignItems="center">
+                 <Grid item xs={12}>
+                    <Image className={classes.image} src={props.image} aspectRatio={aspectRatio} cover />
+                 </Grid>
+                 <Grid item xs={6}>
+                    <Box display="flex" justifyContent="flex-start">
+                        <div className={classes.cardContent}><b>Project: </b> {props.project}</div>
+                    </Box>
+                 </Grid>
+                 <Grid item xs={6} className={classes.icons}>
+                    <Box display="flex" justifyContent="flex-end">
                         <OpenWithRoundedIcon fontSize="large" style={{cursor: "pointer"}} onClick={() => setScreenshotOpen(!screenshotOpen)} />
                         <ModalElement open={screenshotOpen} close={() => closeModal()}>
-                           {screenshot}
+                            <Fade in={screenshotOpen} {...(!screenshotOpen ? { timeout: 1000 } : {})}>
+                                {screenshot}
+                            </Fade>
                         </ModalElement>
-                       <Link
-                       
-                        href={props.link}
-                        rel="noopener noreferrer" 
-                        target="_blank" >
-                            <OpenInNewRoundedIcon fontSize="large" style={{marginLeft: "15px", color: "#F26419"}} />
+                        <Link
+                            href={props.link}
+                            rel="noopener noreferrer" 
+                            target="_blank" >
+                                <OpenInNewRoundedIcon fontSize="large" style={{marginLeft: "15px", color: "#F26419"}} />
                         </Link> 
-                    </CardActions>
-                </Grid>
+                    </Box>
+                 </Grid>
             </Grid>
-        </Card>
+        </div>
     )
 }
 

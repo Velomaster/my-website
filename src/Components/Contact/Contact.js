@@ -24,6 +24,10 @@ const useStyles = makeStyles(() => ({
         color: "#2F4858",
         textAlign: "center",
         textDecoration: "none",
+        // -------> add hover to icons. Refactor code <------------------ 
+        // '&:hover': {
+        //     color: "#F26419"
+        // }
     },
     iconsTitle: {
         marginBottom: "2rem", 
@@ -68,7 +72,10 @@ const Contact = () => {
                 <Grid item xs={12} md={8}>
                     <Grid container justify="center">
                         <Grid item xs={11}>
-                            <ContactForm />
+                            <div id="contact-form">
+                                <ContactForm  />
+
+                            </div>
                         </Grid>
                     </Grid>
                 </Grid>

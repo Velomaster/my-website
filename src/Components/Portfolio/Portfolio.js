@@ -5,7 +5,7 @@ import Project from '../Project/Project';
 import projectData from '../../Projects-data';
 
 const useStyles = makeStyles((theme) => ({
-    hero: {
+    root: {
         backgroundColor: "#33658A",
         paddingTop: "2rem",
         paddingBottom: "2rem",
@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: "#eef4ed",
-        fontSize: "45px",
+        fontFamily: `'Jost', sans-serif`,
+        fontSize: "55px",
         fontWeight: "400",
-        textAlign: "center",
         marginTop: "2rem",
-        marginBottom: "2rem"
+        marginBottom: "3rem"
     }
 }));
 
@@ -25,9 +25,9 @@ const Portfolio = () => {
 
     const classes = useStyles()
     return (
-        <div className={classes.hero} id={'projects'}>
+        <div className={classes.root} id={'projects'}>
             <h1 className={classes.title}>Projects</h1>
-            <Container maxWidth="lg" className={classes.carousel}>
+            <Container className={classes.carousel}>
                  <Carousel 
                     indicatorIconButtonProps={{
                         style: {

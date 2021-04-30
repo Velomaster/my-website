@@ -1,9 +1,20 @@
 import React from "react";
-import { Modal } from '@material-ui/core';
+import { Modal, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(() => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+}));
 
 const ModalElement = (props) => {
+    const classes = useStyles();
+
     return (
         <Modal
+            className={classes.modal}
             disablePortal
             disableEnforceFocus
             disableAutoFocus
