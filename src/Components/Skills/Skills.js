@@ -1,36 +1,37 @@
 import React from "react";
-import {Grid, List, ListItem, ListItemAvatar, ListItemText, makeStyles } from '@material-ui/core';
-import AdjustOutlinedIcon from '@material-ui/icons/AdjustOutlined';
+import {Grid, makeStyles } from '@material-ui/core';
+import Skill from '../Skill/Skill';
 
 const useStyles = makeStyles(() => ({
     root: {
         backgroundColor: "#eef4ed",
         paddingTop: "2rem",
-        textAlign: "center",
         paddingBottom: "3rem",
+        paddingLeft: "3rem",
+        paddingRight: "3rem",
         backgroundImage: `url("https://www.transparenttextures.com/patterns/cubes.png")`,
+    },
+    title: {
+        fontFamily: `'Jost', sans-serif`,
+        fontSize: "55px",
+        fontWeight: "400",
+        color: "#2F4858",
+    },
+    skills: {
+        maxWidth: "650px",
+        margin: "auto",
 
     },
     iconsList: {
         paddingTop: "5rem",
-        contentAlign: "center",
     },
     icons: {
         height: "40px",
         backgroundSize: 'contain',
         marginBottom: "3rem",
     },
-    skills: {
-        paddingTop: "2rem",
-        paddingLeft: "200px", 
- 
+}));
 
-    },
-    skill: {
-        color: "#2F4858",
-        fontSize: "20px",
-    }
-}))
 const Skills = () => {
     const classes = useStyles();
 
@@ -76,31 +77,22 @@ const Skills = () => {
             alt: "firebase"
         },
     ]
-
     const skills = [
-        "JavaScript", "HTML", "CSS", "ReactJS", "Redux", "Parcel JS", "Bootstrap", "jQuery", "MongoDB", "Firebase", "NodeJS", "Express", "GitHub", "REST", "API", "ES6",
-        "OOP", "Google Analytics"]
+        "JavaScript", "HTML", "CSS", "ReactJS", "Redux", "Parcel JS", "Bootstrap", "jQuery", "MongoDB", "Firebase", "NodeJS", "Express", "GitHub", "REST", "API"
+    ]
 
     return (
         <div className={classes.root} id="skills">
-                <h1 style={{ color: "#2F4858"}}>My Skills</h1>
-            <Grid container  justify="center" alignItems="center" className={classes.skills}>
+                <h1 className={classes.title}>My Skills</h1>
+            <Grid container alignItems="center" className={classes.skills}>
                 {skills.map((skill, i) => (
-                    <Grid item xs={4} key={i}>
-                        <List >
-                            <ListItem>
-                                <ListItemAvatar>
-                                        <AdjustOutlinedIcon style={{color: "#86BBD8"}} />
-                                </ListItemAvatar>
-                                <ListItemText primary={skill} className={classes.skill}/>
-                            </ListItem>
-                        </List>                
+                    <Grid item xs={6} sm={4} key={i}>
+                        <Skill skill={skill} />
                     </Grid>
                 ))}
-                
             </Grid>
 
-            <Grid container justify="center" alignItems="center"  className={classes.iconsList}>
+            <Grid container justify="center" className={classes.iconsList}>
                 {icons.map((item, i) => (
                      <Grid item key={i} xs={6} sm={6} md={1} >
                         <img src={item.logo} alt={item.alt} className={classes.icons} />

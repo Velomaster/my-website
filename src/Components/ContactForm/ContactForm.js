@@ -68,7 +68,7 @@ const ContactForm = () => {
             </Grid>
             <Grid item xs={11}>
                 <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-                        <Grid container spacing={2}>
+                        <Grid container  spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <Controller
                                     control={control}

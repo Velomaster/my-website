@@ -1,59 +1,70 @@
 import React from "react";
-// import { sizing, shadows } from '@material-ui/system';
-import { Box, Grid, Typography, makeStyles } from '@material-ui/core';
-import picture from '../../assets/About/my-pic.jpg'
+import {Grid, Typography, makeStyles } from '@material-ui/core';
+import picture from '../../assets/About/my-pic.jpeg'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: "#33658A",
-        textAlign:  "center",
         paddingTop: "2rem",
-        paddingBottom: "2rem",
+        paddingBottom: "4rem",
     },
-    section: {
-        flexWrap: "nowrap",
+    title: {
+        color: "#eef4ed", 
+        paddingBottom: "2rem",
+        fontFamily: `'Jost', sans-serif`,
+        fontWeight: "400",
+        fontSize: "55px",
+    },
+    content: {
+        textAlign: "start",
     },
     picture: {
-        height: "350px",
-        marginBottom: "-3px",
-
+        width: "85%",
+        height: "auto",
+        borderRadius: "50%",
+        [theme.breakpoints.down('sm')]: {
+            width: "60%",
+            marginBottom: "2rem",
+        },
     },
     about: {
         paddingLeft: "3rem",
+        paddingRight: "3rem",
     },
     bio: {
         paddingLeft: "3rem",
-        marginRight: "3rem",
         color: "#eef4ed",
-        fontSize: "20px",
+        fontSize: "22px",
         fontWeight: "200",
-        textAlign: "start"
+        textAlign: "start",
+        float: "left",
+        [theme.breakpoints.down('sm')]: {
+            fontSize: "18px",
+            paddingLeft: 0,
+        },
     }
 }))
 
 const About = () => {
     const classes = useStyles();
-    return (
-        <div className={classes.root} id="about">
-            <h1 style={{ color: "#eef4ed", paddingBottom: "2rem"}}>About Me</h1>
-            <Grid container className={classes.section}>
-                <Grid item className={classes.about}>
-                    <Box boxShadow={6} border={18} borderColor="white">
+    return (  
+        <div className={classes.root}>
+            <h1 className={classes.title}>About Me</h1>
+            <Grid container className={classes.about}>
+                <Grid item xs={12} md={4} >
                         <img src={picture} alt="pic" className={classes.picture}/>
-                    </Box>
                 </Grid>
-                <Grid item >
+                <Grid item xs={12} md={8} >
                     <Typography variant="body1" component={'div'} className={classes.bio}>
-                    <p>I’m a Texas based front-end developer. I work with a diverse range of clients, from home stay freelansers to well-established small and mid-size businesses.</p>
-                    <p>With a mindset focused on results, I am good at picking up new skills quickly and implementing new information and techniques as soon as I learn them. I use my resourcefulness and positive mindset to adapt to new environments and situations. I welcome constructive criticism because it leads to growth, and I look at new challenges as learning opportunities. These are qualities and skills I would like to bring to your company.</p>
+                    <p style={{marginTop: "0"}}>I am a Texas based self-taught website developer with 8 years of experience.</p>
+                    <p>I build websites and applications for small and medium sized businesses including manufacturing companies, financial services, retailing, construction, engineering, legal, interior design, and architectural firms.</p>
                     <p>I am looking forward to build an efficient and profitable project for you. Feel free to contact me in the Contact section below.</p>
                     <br></br>
-                    <p><b>Alexander Gudkov</b></p>
+                    <p style={{marginTop: "0"}}><b>Alexander Gudkov</b></p>
                     </Typography>
                 </Grid>
             </Grid>
-
-        </div>
+        </div>  
     )
 }
 
