@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const About = () => {
     const classes = useStyles();
     return (  
-        <div className={classes.root}>
+        <div className={classes.root} id="about">
             <h1 className={classes.title}>About Me</h1>
             <Grid container className={classes.about}>
                 <Grid item xs={12} md={4} >

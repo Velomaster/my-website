@@ -2,17 +2,19 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { TextField, Grid, Button, makeStyles } from "@material-ui/core";
+import { TextField, Grid, Button, Box, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
     root: {
         backgroundColor: "#2F4858",
     },
     subtitle: {
-        paddingLeft: "3rem",
+        paddingLeft: "2rem",
+        paddingTop: "1rem",
         color: "#F6AE2D", 
         fontWeight: "300",
-        fontSize: "28px"
+        fontSize: "28px",
+        textAlign: "start",
     },
     form: {
         paddingTop: "2rem",
@@ -42,7 +44,7 @@ const useStyles = makeStyles(() => ({
         borderRadius: "20px",
         width: "150px",
         height: "40px",
-        marginBottom: "2rem"
+        marginBottom: "2rem",
     },
 }))
 const ContactForm = () => {
@@ -141,7 +143,9 @@ const ContactForm = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <Button disableElevation variant="contained" className={classes.button} type="submit">Send</Button>
+                                <Box display="flex" justifyContent="flex-start">
+                                    <Button disableElevation variant="contained" className={classes.button} type="submit">Send</Button>
+                                </Box>
                             </Grid>
                         </Grid>
                 </form>

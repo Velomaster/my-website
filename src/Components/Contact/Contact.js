@@ -6,7 +6,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ContactForm from '../ContactForm/ContactForm';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: "#eef4ed",
         paddingTop: "1rem",
@@ -19,7 +19,10 @@ const useStyles = makeStyles(() => ({
         fontFamily: `'Jost', sans-serif`,
         fontWeight: "400",
         fontSize: "55px",
-        
+        [theme.breakpoints.down("md")]: {
+            paddingBottom: "0",
+            marginBottom: "0",
+        }
     },
     icons: {
         paddingTop: "2rem",
@@ -40,6 +43,10 @@ const useStyles = makeStyles(() => ({
         marginTop: "3rem",
         fontSize: "30px", 
         fontWeight: "200",
+        [theme.breakpoints.down("md")]: {
+            marginBottom: "2rem",
+            marginTop: "2rem",
+        }
     }
 }));
 

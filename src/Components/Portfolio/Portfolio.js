@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#33658A",
         paddingTop: "2rem",
         paddingBottom: "2rem",
-
     },
     title: {
         color: "#eef4ed",

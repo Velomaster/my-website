@@ -1,5 +1,5 @@
 import {React, useState } from 'react';
-import {Grid, Link, Box, Fade, makeStyles} from '@material-ui/core';
+import {Grid, Link, Fade, Button, makeStyles} from '@material-ui/core';
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
 import OpenWithRoundedIcon from '@material-ui/icons/OpenWithRounded';
 import ModalElement from '../ModalElement/ModalElement';
@@ -7,7 +7,7 @@ import Image from 'material-ui-image';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: "rgba(0, 0, 0, 0.15)",
+        // backgroundColor: "rgba(0, 0, 0, 0.15)",
         marginBottom: "2rem",
     },
     cardContent: {
@@ -21,11 +21,17 @@ const useStyles = makeStyles((theme) => ({
             paddingLeft: "5px",
         }
     },
-    icons: {
-        color: "#f1faee",
-        paddingTop: "10px",
-        paddingBottom: "10px",
-        paddingRight: "10px",
+    buttons: {
+        color: "#eef4ed",
+        marginTop: "20px",
+        border: "solid 1px #eef4ed",
+        borderRadius: "20px",
+        fontSize: "12px",
+        fontWeight: "400",
+        '&:hover': {
+            color: "#F26419",
+            border: "solid 1px #F26419",
+        },
     },
     image: {
         width: "80%",
@@ -61,26 +67,20 @@ const Project = (props) => {
                  <Grid item xs={12}>
                     <Image className={classes.image} src={props.image} aspectRatio={aspectRatio} cover />
                  </Grid>
-                 <Grid item xs={6}>
-                    <Box display="flex" justifyContent="flex-start">
-                        <div className={classes.cardContent}><b>Project: </b> {props.project}</div>
-                    </Box>
-                 </Grid>
-                 <Grid item xs={6} className={classes.icons}>
-                    <Box display="flex" justifyContent="flex-end">
-                        <OpenWithRoundedIcon fontSize="large" style={{cursor: "pointer"}} onClick={() => setScreenshotOpen(!screenshotOpen)} />
-                        <ModalElement open={screenshotOpen} close={() => closeModal()}>
-                            <Fade in={screenshotOpen} {...(!screenshotOpen ? { timeout: 1000 } : {})}>
-                                {screenshot}
-                            </Fade>
-                        </ModalElement>
-                        <Link
-                            href={props.link}
-                            rel="noopener noreferrer" 
-                            target="_blank" >
-                                <OpenInNewRoundedIcon fontSize="large" style={{marginLeft: "15px", color: "#F26419"}} />
-                        </Link> 
-                    </Box>
+                 <Grid item xs={12} >
+                    <Button className={classes.buttons} small variant="outlined" endIcon={<OpenWithRoundedIcon />} onClick={() => setScreenshotOpen(!screenshotOpen)}>open</Button>
+                    <ModalElement open={screenshotOpen} close={() => closeModal()}>
+                        <Fade in={screenshotOpen} {...(!screenshotOpen ? { timeout: 1000 } : {})}>
+                            {screenshot}
+                        </Fade>
+                    </ModalElement>
+                    <Link
+
+                        href={props.link}
+                        rel="noopener noreferrer" 
+                        target="_blank" >
+                            <Button className={classes.buttons} style={{marginLeft: "20px"}} small variant="outlined" endIcon={<OpenInNewRoundedIcon />}>try out</Button>
+                    </Link> 
                  </Grid>
             </Grid>
         </div>
