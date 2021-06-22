@@ -7,7 +7,6 @@ import Image from 'material-ui-image';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // backgroundColor: "rgba(0, 0, 0, 0.15)",
         marginBottom: "2rem",
     },
     cardContent: {
@@ -75,7 +74,6 @@ const Project = (props) => {
                         </Fade>
                     </ModalElement>
                     <Link
-
                         href={props.link}
                         rel="noopener noreferrer" 
                         target="_blank" >
