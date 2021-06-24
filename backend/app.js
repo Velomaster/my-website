@@ -17,10 +17,9 @@ app.post('/form', (req, res) => {
     sendEmail(email, jobDescription, name)
         .then(() => res.status(200).send())
         .catch(error => {
-            console.error(error);
             
             if (error.response) {
-                return res.status(500).json({message: error.response.body});
+                return res.status(500).json({message: error.response.body.errors[0].message});
             }
             res.status(500).json({message: "Unexpected error..."});
         });

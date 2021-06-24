@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { TextField, Grid, Button, Box, makeStyles } from "@material-ui/core";
+import { Alert } from '@material-ui/lab';
 import Loader from "react-loader-spinner";
 import ModalElement from "../ModalElement/ModalElement";
 
@@ -48,6 +49,14 @@ const useStyles = makeStyles(() => ({
         height: "40px",
         marginBottom: "2rem",
     },
+    alert: {
+        position: "fixed",
+        top: "2rem",
+        right: "1.5rem",
+        zIndex: "100",
+        fontSize: "16px",
+        fontWeight: "400"
+    }
 }))
 const ContactForm = () => {
     const classes = useStyles();
@@ -64,14 +73,32 @@ const ContactForm = () => {
 
     const [showLoader, setShowLoader] = useState(false);
 
+    const [errorMsg, setErrorMsg] = useState(null);
+
+    const [successMessageSent, setSuccessMessageSent] = useState(false);
+    const [errorMessageSent, setErrorMessageSent] = useState(false);
+
     const loader =  <Loader
         type="Oval"
         color="#F26419"
         height={100}
         width={100}
-        timeout={1000} //3 secs
+        timeout={1000}
     />
+
+    const successMessage = <Alert className={classes.alert} variant="filled" severity="success">Your message have been sent</Alert>
+    const errorMessage = <Alert className={classes.alert} variant="filled" severity="error">{errorMsg}</Alert>
     
+    const successMessageHandle = () => {
+        setSuccessMessageSent(true);
+        setTimeout(() => {setSuccessMessageSent(false)}, 3000);
+    };
+
+    const errorMessageHandle = () => {
+        setErrorMessageSent(true);
+        setTimeout(() => {setErrorMessageSent(false)}, 5000);
+    };
+     
     const onSubmit = (data) => {
         setShowLoader(true);
         setUnableButton(true);
@@ -90,10 +117,12 @@ const ContactForm = () => {
                         setShowLoader(false);
                         setUnableButton(false);
                         // error message
-                        console.log('Error message: ', body.message)
+                        const errorMsg = body.message;
+                        setErrorMsg(errorMsg);
+                        errorMessageHandle();
                     });
             } else {
-                // success message
+                successMessageHandle();
                 setShowLoader(false);
                 setUnableButton(false);
                 reset({
@@ -102,8 +131,11 @@ const ContactForm = () => {
                     jobDescription: ""});
             };
         })
-        .catch(error => {
-            console.log('error: Network error');
+        .catch(() => {
+            setShowLoader(false);
+            setUnableButton(false);
+            setErrorMsg('Unexpected server error');
+            errorMessageHandle();
         });
     };
     
@@ -112,6 +144,8 @@ const ContactForm = () => {
             <ModalElement open={showLoader}>
                 {loader}
             </ModalElement>
+            {successMessageSent ? successMessage : null}
+            {errorMessageSent ? errorMessage : null}
             <Grid item xs={12} >
                 <h3 className={classes.subtitle}>Have a project in mind? Send me a message and let's start working</h3>
             </Grid>
